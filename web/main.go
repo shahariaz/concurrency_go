@@ -7,6 +7,7 @@ import (
 
 type App struct {
 	*UserHandler
+	*TemplateRender
 }
 
 func main() {
@@ -22,7 +23,8 @@ func main() {
 	userHandler := NewUserHandler(userService)
 
 	app := &App{
-		UserHandler: userHandler,
+		UserHandler:    userHandler,
+		TemplateRender: NewTemplateRender(false, "templates"),
 	}
 	err = userRepo.CreateTable()
 	if err != nil {
